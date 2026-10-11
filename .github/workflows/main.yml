@@ -1,0 +1,33 @@
+name: Deploy to Surge
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Surge
+        run: npm install --global surge
+
+      - name: Deploy to Surge.sh
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+          SURGE_DOMAIN: ${{ secrets.SURGE_DOMAIN }}
+        run: |
+          TARGET_DOMAIN="${SURGE_DOMAIN:-nikkoban-primer-parcial.surge.sh}"
+          echo "Desplegando sitio en: $TARGET_DOMAIN"
+          surge ./ "$TARGET_DOMAIN" --token "$SURGE_TOKEN"

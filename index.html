@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electiva 2 - Primer Parcial | CI/CD con GitHub Actions y Surge.sh</title>
+  <meta name="description" content="Proyecto del Primer Parcial de Electiva 2: Integración continua y despliegue automatizado con GitHub Actions y Surge.sh">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="blob-bg blob-1"></div>
+  <div class="blob-bg blob-2"></div>
+  <div class="blob-bg blob-3"></div>
+
+  <div class="page-container">
+    <header class="header">
+      <div class="header-badge">
+        <span class="status-dot"></span>
+        <span>CI/CD Pipeline Activo</span>
+      </div>
+      <h1 class="main-title">Primer Parcial: Electiva 2</h1>
+      <p class="subtitle">Integración Continua & Despliegue Automatizado con <span class="highlight-gh">GitHub Actions</span> y <span class="highlight-surge">Surge.sh</span></p>
+    </header>
+
+    <main class="content-grid">
+      <!-- Card: Estado del Despliegue -->
+      <section class="card glass-card" id="deployment-card">
+        <div class="card-header">
+          <div class="icon-circle icon-surge">
+            ⚡
+          </div>
+          <div>
+            <h2>Despliegue en Surge.sh</h2>
+            <p class="card-caption">Hosting estático de alta velocidad</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="status-indicator-box">
+            <div class="pulse-indicator"></div>
+            <div>
+              <p class="status-label">Estado del Sitio</p>
+              <p class="status-val success-text" id="live-status">Desplegado y En Línea</p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Dominio Surge:</span>
+            <a href="https://nikkoban-primer-parcial.surge.sh" target="_blank" rel="noopener noreferrer" class="link-badge" id="surge-domain-link">
+              nikkoban-primer-parcial.surge.sh ↗
+            </a>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Última compilación:</span>
+            <span class="mono-text" id="current-timestamp">Cargando...</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card: Repositorio GitHub -->
+      <section class="card glass-card" id="repo-card">
+        <div class="card-header">
+          <div class="icon-circle icon-github">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </div>
+          <div>
+            <h2>Repositorio GitHub</h2>
+            <p class="card-caption">Control de versiones con Git</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <span class="info-label">Usuario:</span>
+            <span class="badge badge-primary">NikkoBan</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Repositorio:</span>
+            <a href="https://github.com/NikkoBan/primer-parcial" target="_blank" rel="noopener noreferrer" class="link-badge" id="github-repo-link">
+              NikkoBan/primer-parcial ↗
+            </a>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Rama activa:</span>
+            <span class="badge badge-accent">main</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card: Pasos Cumplidos -->
+      <section class="card glass-card full-width" id="pipeline-steps-card">
+        <div class="card-header">
+          <div class="icon-circle icon-workflow">
+            ⚙️
+          </div>
+          <div>
+            <h2>Flujo de Integración Continua</h2>
+            <p class="card-caption">Pasos completados para la entrega del parcial</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="steps-container">
+            <div class="step-item completed">
+              <div class="step-check">✓</div>
+              <div class="step-info">
+                <h4>a) Repositorio Local & HTML</h4>
+                <p>Inicialización de git local, diseño web responsivo con <code>index.html</code>.</p>
+              </div>
+            </div>
+
+            <div class="step-item completed">
+              <div class="step-check">✓</div>
+              <div class="step-info">
+                <h4>b) Repositorio en GitHub</h4>
+                <p>Vinculación del origen remoto con <code>https://github.com/NikkoBan/primer-parcial.git</code>.</p>
+              </div>
+            </div>
+
+            <div class="step-item completed">
+              <div class="step-check">✓</div>
+              <div class="step-info">
+                <h4>c) Workflow de GitHub Actions</h4>
+                <p>Configuración en <code>.github/workflows/main.yml</code> activado en cada <code>push</code>.</p>
+              </div>
+            </div>
+
+            <div class="step-item completed">
+              <div class="step-check">✓</div>
+              <div class="step-info">
+                <h4>d) Instalación de Surge.sh</h4>
+                <p>Herramienta CLI <code>surge</code> instalada y configurada para despliegues estáticos.</p>
+              </div>
+            </div>
+
+            <div class="step-item completed">
+              <div class="step-check">✓</div>
+              <div class="step-info">
+                <h4>e) Secretos de GitHub</h4>
+                <p>Protección de credenciales mediante <code>SURGE_LOGIN</code> y <code>SURGE_TOKEN</code>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card: Workflow Interactivo -->
+      <section class="card glass-card full-width" id="workflow-details-card">
+        <div class="card-header">
+          <div class="icon-circle icon-code">
+            📄
+          </div>
+          <div>
+            <h2>Especificación del Workflow (.github/workflows/main.yml)</h2>
+            <p class="card-caption">Definición YAML ejecutada en GitHub Actions</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <pre class="code-block"><code>name: Deploy to Surge
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Surge
+        run: npm install --global surge
+
+      - name: Deploy to Surge.sh
+        run: surge ./ nikkoban-primer-parcial.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 <strong>NikkoBan</strong> - Electiva 2 | Instituto Tecnológico de Las Américas (ITLA)</p>
+      <div class="footer-links">
+        <a href="https://github.com/NikkoBan/primer-parcial" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+        <span>•</span>
+        <a href="https://nikkoban-primer-parcial.surge.sh" target="_blank" rel="noopener noreferrer">Sitio Surge</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
